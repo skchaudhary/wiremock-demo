@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group 'com.learnwiremock'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    maven {url "https://jitpack.io"}
+}
+
+dependencies {
+    // web-client dependencies
+    implementation('org.springframework:spring-webflux:5.3.27')
+    implementation('io.projectreactor.netty:reactor-netty:1.1.6')
+    runtimeOnly('io.netty:netty-resolver-dns-native-macos:4.1.90.Final:osx-aarch_64')
+    //lombok
+    compileOnly('org.projectlombok:lombok:1.18.26')
+    annotationProcessor('org.projectlombok:lombok:1.18.26')
+    implementation('org.slf4j:slf4j-api:2.0.5')
+    implementation('org.slf4j:slf4j-simple:2.0.5')
+
+    //jackson
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.14.2')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.14.2')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2')
+    implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.14.2')
+
+    //junit5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
+    //wiremock
+    testImplementation 'com.github.tomakehurst:wiremock-jre8-standalone:2.35.0'
+    implementation 'com.github.JensPiegsa:wiremock-extension:0.4.0'
+}
+
+test {
+    useJUnitPlatform()
+}
